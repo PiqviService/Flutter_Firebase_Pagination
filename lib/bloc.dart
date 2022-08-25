@@ -46,6 +46,7 @@ class MovieListBloc {
 
 /*This will automatically fetch the next 10 elements from the list*/
   fetchNextMovies() async {
+    showIndicatorController.sink.add(true);
     try {
       updateIndicator(true);
       List<DocumentSnapshot> newDocumentList =
@@ -68,6 +69,7 @@ class MovieListBloc {
       print(e.toString());
       movieController.sink.addError(e);
     }
+    showIndicatorController.sink.add(false);
   }
 
 /*For updating the indicator below every list and paginate*/
